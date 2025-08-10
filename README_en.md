@@ -26,7 +26,7 @@ Keep everything on your phone, save money, and avoid platforms/VPS fees.
 ```bash
 pkg update -y && pkg upgrade -y
 pkg install -y git
-git clone https://github.com/YOUR_USER/n8n-termux-android-ia.git
+git clone https://github.com/kuromi04/n8n-termux-android-ia.git
 cd n8n-termux-android-ia
 
 chmod +x scripts/*.sh

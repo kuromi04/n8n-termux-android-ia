@@ -27,7 +27,7 @@ Fully *local*, **free**, avoiding VPS costs or platform subscriptions.
 ```bash
 pkg update -y && pkg upgrade -y
 pkg install -y git
-git clone https://github.com/YOUR_USERNAME/n8n-termux-android-ia.git
+git clone https://github.com/kuromi04/n8n-termux-android-ia.git
 cd n8n-termux-android-ia
 ```
 

@@ -194,20 +194,6 @@ Con Termux instalado correctamente, ya puedes seguir los pasos de instalación d
 
 **n8n corriendo en navegador (oscuro):**
 ![n8n running](assets/n8n-running.jpg)
-
----
-
-## 💡 Pro Tip
-
-- Antes de subir a GitHub, **abre `README.md`** y reemplaza todos los ejemplos de URL con `YOUR_USER` o `tu-usuario` por tu nombre de usuario real de GitHub.  
-- Asegúrate de que la carpeta `assets/` se suba completa, incluyendo el GIF y las imágenes, para que el banner y las capturas se vean correctamente.  
-- Si el GIF (`assets/install-steps.gif`) no se anima al verlo en GitHub, abre el archivo en una nueva pestaña para verificar que está correcto.  
-- Mantén los scripts con permisos de ejecución antes de subirlos:  
-  ```bash
-  chmod +x scripts/*.sh
-  ```
-- Si actualizas imágenes o capturas, **mantén el mismo nombre de archivo** para no romper las referencias en el README.
-
 ---
 
 ## 🤖 Casos de uso con IA

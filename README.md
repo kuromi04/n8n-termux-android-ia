@@ -30,7 +30,7 @@ Corre *local*, **gratis**, y evita pagar VPS o membresías de plataformas.
 ## 📋 Requisitos
 - Android 8+ (recomendado 10+)
 - [Termux](https://termux.dev)
-> ⚠️ **Importante**: Instala Termux **únicamente** desde su [repositorio oficial en GitHub](https://github.com/termux/termux-app/releases) o desde los **Termux Packages** de [IvanByCinderella](https://github.com/IvanByCinderella/termux-packages).  
+> ⚠️ **Importante**: Instala Termux **únicamente** desde su [repositorio oficial en GitHub](https://github.com/termux/termux-app/releases) o desde los **Termux Packages** de [Ivan3ByCinderella](https://github.com/Ivan3ByCinderella/termux-packages).  
 > No uses versiones de Google Play, ya que están desactualizadas y pueden dar errores.
  (desde F-Droid o su repo oficial)
 - Al menos **3 GB** de espacio libre

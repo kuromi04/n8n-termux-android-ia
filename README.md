@@ -17,7 +17,7 @@
 Automatiza con **n8n** directamente en tu **Android** usando **Termux** y **PM2**. 
 Corre *local*, **gratis**, y evita pagar VPS o membresías de plataformas.
 
-> ⚡️ Nota: Este repo acompaña un video corto de YouTube/TikTok/Shorts. Según el autor, es la **primera** instalación pública de n8n en Android vía Termux.
+> ⚡️ Nota: Este repo acompaña un video corto de YouTube https://www.youtube.com/watch?v=DYtlUBZ3Od4. Según el autor, es la **primera** instalación pública de n8n en Android vía Termux.
 
 ## 🚀 Qué obtienes
 - **Scripts reproducibles** para instalación y arranque con PM2

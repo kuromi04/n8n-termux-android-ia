@@ -1,4 +1,5 @@
 # n8n en Termux (Android) con IA — GRATIS, sin VPS, sin membresías
+youtube/ https://youtube.com/shorts/tXAiWUwH88A?si=xkMO0f-VUkp9jR1Q
 
 <p align="center">
   <img src="assets/banner-dark.png" alt="n8n en Termux - Dark banner" width="100%"/>

@@ -122,7 +122,7 @@ curl -I http://127.0.0.1:5678
 
 ## 🧾 Créditos
 - Autor: @tiendastelegram
-- Inspirado por la comunidad n8n y Termux
+- Inspirado por la comunidad de Ivanbycinderella, n8n y Termux
 - Telegram: https://t.me/tiendastelegram
 
 ## 📄 Licencia

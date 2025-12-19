@@ -1,2 +1,0 @@
-Prompt para Shorts/Reels:
-"Instala n8n en Termux (Android) y corre IA GRATIS. Soy el primero en Android en mostrarlo: sin VPS ni membresías. Copia y pega estos comandos (aparece en pantalla). Suscríbete para más automatizaciones móviles."

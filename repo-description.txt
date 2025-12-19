@@ -1,1 +1,0 @@
-🚀 Instala y ejecuta n8n con IA en Android usando Termux y PM2 — gratis, sin VPS ni membresías, totalmente local y optimizado para automatizaciones inteligentes.

@@ -1,5 +1,4 @@
 # 🚀 n8n en Termux (Android) v2.1 - Instalación con UN SOLO COMANDO
-
 [![Shell](https://img.shields.io/badge/Shell-Bash-4EAA25?logo=gnu-bash&logoColor=white)](https://www.gnu.org/software/bash/)
 [![Node.js](https://img.shields.io/badge/Node.js-LTS-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![n8n](https://img.shields.io/badge/n8n-latest-FF6D5A?logo=n8n&logoColor=white)](https://n8n.io/)

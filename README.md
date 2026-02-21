@@ -1,4 +1,5 @@
-# 🚀 n8n en Termux (Android) v2.1 - Instalación con UN SOLO COMANDO
+# 🚀 n8n en Termux (Android) v2.1 - Instalación con 
+UN SOLO COMANDO
 
 [![Shell](https://img.shields.io/badge/Shell-Bash-4EAA25?logo=gnu-bash&logoColor=white)](https://www.gnu.org/software/bash/)
 [![Node.js](https://img.shields.io/badge/Node.js-LTS-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -347,7 +348,7 @@ Todo esto **sin pagar VPS**, directamente desde tu Android.
 
 ## 🧾 Créditos
 
-- **Autor**: [@tiendastelegram](https://t.me/tiendastelegram)
+- **Autor**: [@Maka0024](https://t.me/tiendastelegram)
 - **Inspirado por**: Comunidad n8n, Termux e IvanByCinderella
 - **Repo**: https://github.com/kuromi04/n8n-termux-android-ia
 

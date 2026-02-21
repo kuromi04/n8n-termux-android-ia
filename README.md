@@ -347,7 +347,7 @@ Todo esto **sin pagar VPS**, directamente desde tu Android.
 ## 🧾 Créditos
 
 - **Autor**: [@Maka0024](https://t.me/tiendastelegram)
-- **Inspirado por**: Comunidad n8n, Termux e IvanByCinderella
+- **Inspirado por**: Comunidad n8n, Termux e IvanByCinderella https://github.com/ivam3/i-Haklab
 - **Repo**: https://github.com/kuromi04/n8n-termux-android-ia
 
 ---

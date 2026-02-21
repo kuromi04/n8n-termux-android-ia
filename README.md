@@ -1,15 +1,16 @@
-# 🚀 n8n en Termux (Android) v2.0 - Instalación con UN SOLO COMANDO
+# 🚀 n8n en Termux (Android) v2.1 - Instalación con UN SOLO COMANDO
 
 [![Shell](https://img.shields.io/badge/Shell-Bash-4EAA25?logo=gnu-bash&logoColor=white)](https://www.gnu.org/software/bash/)
 [![Node.js](https://img.shields.io/badge/Node.js-LTS-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![n8n](https://img.shields.io/badge/n8n-2.0-FF6D5A?logo=n8n&logoColor=white)](https://n8n.io/)
+[![n8n](https://img.shields.io/badge/n8n-latest-FF6D5A?logo=n8n&logoColor=white)](https://n8n.io/)
 [![PM2](https://img.shields.io/badge/PM2-Process%20Manager-2B037A)](https://pm2.keymetrics.io/)
+[![Version](https://img.shields.io/badge/version-2.1-blue)](https://github.com/kuromi04/n8n-termux-android-ia/releases)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
-> ⚡ **NUEVO**: Instalación completa con un solo comando. Soporte para npm y pnpm. Alias integrados para facilidad de uso.
+> ⚡ Instalación completa con un solo comando. Soporte para npm y pnpm. Alias integrados. Scripts corregidos para funcionar en Termux moderno.
 
-Automatiza con **n8n 2.0** directamente en tu **Android** usando **Termux** y **PM2**.
-Corre *local*, **gratis**, y evita pagar VPS o membresías de plataformas.
+Automatiza con **n8n** directamente en tu **Android** usando **Termux** y **PM2**.
+Corre local, **gratis**, sin pagar VPS ni suscripciones.
 
 ---
 
@@ -17,242 +18,220 @@ Corre *local*, **gratis**, y evita pagar VPS o membresías de plataformas.
 
 YouTube: https://youtube.com/shorts/tXAiWUwH88A?si=xkMO0f-VUkp9jR1Q
 
-> 🎯 Primera instalación pública de n8n en Android vía Termux
-
 ---
 
-## ✨ ¿Qué hay de nuevo en v2.0?
+## ✨ ¿Qué incluye v2.1?
 
 - ✅ **Instalación con UN SOLO COMANDO**
-- ✅ **Soporte para npm Y pnpm** (tú eliges)
-- ✅ **Alias integrados** - Escribe `n8n` y listo
+- ✅ **Soporte para npm y pnpm** (tú eliges)
+- ✅ **Alias integrados** — escribe `n8n` y listo
 - ✅ **Siempre instala la última versión** de n8n
-- ✅ **Sistema de backup automatizado**
-- ✅ **Scripts de utilidad incluidos**
+- ✅ **Sistema de backup** integrado
+- ✅ **Gestor interactivo** (`n8n-manager`)
 - ✅ **Auto-inicio con PM2** al abrir Termux
-- ✅ **Logs centralizados** para debugging
-
----
-
-## 🎯 Instalación Ultra-Rápida (Un solo comando)
-
-### Método 1: Instalación directa (Recomendado)
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/kuromi04/n8n-termux-android-ia/main/install.sh | bash
-```
-
-### Método 2: Clonar repositorio
-
-```bash
-pkg update -y && pkg upgrade -y
-pkg install -y git
-git clone https://github.com/kuromi04/n8n-termux-android-ia.git
-cd n8n-termux-android-ia
-chmod +x install.sh
-./install.sh
-```
-
-**Eso es todo.** El script hace todo automáticamente:
-- ✓ Actualiza Termux
-- ✓ Instala dependencias
-- ✓ Detecta/instala npm o pnpm
-- ✓ Instala PM2
-- ✓ Instala n8n (última versión)
-- ✓ Configura alias
-- ✓ Crea scripts de utilidad
-
----
-
-## 🚀 Uso después de instalar
-
-### Aplicar cambios (solo la primera vez)
-
-```bash
-source ~/.bashrc
-```
-
-### Iniciar n8n
-
-```bash
-n8n
-```
-
-### Otros comandos disponibles
-
-```bash
-n8n-start      # Iniciar n8n
-n8n-stop       # Detener n8n
-n8n-restart    # Reiniciar n8n
-n8n-status     # Ver estado
-n8n-logs       # Ver logs en tiempo real
-n8n-update     # Actualizar a última versión
-n8n-backup     # Crear backup
-```
-
-### Acceder desde el navegador
-
-1. Ejecuta `ifconfig` para obtener tu IP local
-2. Abre en tu navegador: `http://TU_IP:5678`
-
-**Ejemplo:**
-```
-http://192.168.1.100:5678
-```
+- ✅ **Compatibilidad corregida** con Termux moderno (sin `ifconfig`, sin `free`, sin `ps a`)
 
 ---
 
 ## 📋 Requisitos
 
 - Android 8+ (recomendado Android 10+)
-- Termux ([Instalar desde aquí](#-instalación-de-termux))
-- Al menos **2 GB** de RAM libre
-- Al menos **1 GB** de espacio libre
-- Red local para acceder desde otro dispositivo (opcional)
+- Termux instalado correctamente → [ver instrucciones abajo](#-instalación-de-termux)
+- Al menos **2 GB de RAM** libre
+- Al menos **1 GB de espacio** libre
 
 ---
 
 ## 📲 Instalación de Termux
 
-> ⚠️ **MUY IMPORTANTE**: NO instales Termux desde Google Play Store. Está desactualizado.
+> ⚠️ **MUY IMPORTANTE**: NO instales Termux desde Google Play Store. Está desactualizado y dará errores.
 
-### Opción 1: GitHub Oficial (Recomendado)
+**Opción 1 — GitHub oficial (recomendado):**
+1. Descarga el `.apk` desde: https://github.com/termux/termux-app/releases
+2. Instálalo (activa "orígenes desconocidos" si es necesario)
 
-1. Descarga desde: https://github.com/termux/termux-app/releases
-2. Busca la última versión estable (`.apk`)
-3. Instala el APK (activa "orígenes desconocidos" si es necesario)
+**Opción 2 — F-Droid:**
+1. Instala F-Droid desde: https://f-droid.org/
+2. Busca "Termux" y descarga desde allí
 
-### Opción 2: F-Droid
-
-1. Descarga F-Droid: https://f-droid.org/
-2. Busca "Termux" en F-Droid
-3. Instala desde allí
-
-### Verificación
-
+Verifica que funciona con:
 ```bash
 termux-info
 ```
 
-Debe mostrar la versión instalada y arquitectura.
+---
+
+## 🎯 Instalación
+
+### Método 1 — Un solo comando (recomendado)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/kuromi04/n8n-termux-android-ia/main/scripts/install.sh | bash
+```
+
+### Método 2 — Clonar el repositorio
+
+```bash
+pkg update -y && pkg upgrade -y
+pkg install -y git
+git clone https://github.com/kuromi04/n8n-termux-android-ia.git
+cd n8n-termux-android-ia
+chmod +x scripts/install.sh
+./scripts/install.sh
+```
+
+El instalador hace todo automáticamente:
+- Actualiza Termux y paquetes
+- Instala dependencias de compilación
+- Detecta o instala npm / pnpm
+- Instala PM2 y n8n (última versión)
+- Configura variables de entorno y alias
+- Crea scripts de utilidad
 
 ---
 
-## ⚙️ Configuración Avanzada
+## 🚀 Primeros pasos tras instalar
 
-### Variables de entorno
+**1. Aplica los alias (solo la primera vez):**
+```bash
+source ~/.bashrc
+```
 
-El instalador crea automáticamente `~/.n8n/.env` con configuración óptima. Puedes editarlo:
+**2. Inicia n8n:**
+```bash
+n8n
+```
+
+**3. Abre en el navegador:**
+
+Desde el mismo dispositivo:
+```
+http://localhost:5678
+```
+
+Desde otro dispositivo en la misma red WiFi — primero obtén tu IP:
+```bash
+ip route get 1.1.1.1
+```
+Luego abre: `http://TU_IP:5678`
+
+---
+
+## ⌨️ Comandos disponibles
+
+```bash
+n8n              # Iniciar n8n
+n8n-start        # Iniciar n8n (igual que el anterior)
+n8n-stop         # Detener n8n
+n8n-restart      # Reiniciar n8n
+n8n-status       # Ver estado del proceso
+n8n-logs         # Ver logs en tiempo real
+n8n-update       # Actualizar a la última versión
+n8n-backup       # Crear backup completo
+n8n-manager      # Abrir el gestor visual interactivo
+```
+
+---
+
+## ⚙️ Configuración
+
+El instalador crea automáticamente `~/.n8n/.env`. Para editarlo:
 
 ```bash
 nano ~/.n8n/.env
 ```
 
-**Variables importantes:**
+Variables principales:
 
 ```env
-# Puerto (por defecto: 5678)
+# Puerto de acceso (por defecto: 5678)
 N8N_PORT=5678
 
-# Host (0.0.0.0 permite acceso desde red local)
+# Escuchar en toda la red (necesario para acceder desde otro dispositivo)
 N8N_HOST=0.0.0.0
 
-# Ubicación de datos
-N8N_USER_FOLDER=/data/data/com.termux/files/home/.n8n
-
-# Base de datos (SQLite por defecto)
+# Base de datos SQLite (recomendada para móvil)
 DB_TYPE=sqlite
 DB_SQLITE_DATABASE=/data/data/com.termux/files/home/.n8n/database.sqlite
 
-# Seguridad (activar auth básico)
-N8N_BASIC_AUTH_ACTIVE=true
+# Autenticación (desactivada por defecto, actívala si expones n8n)
+N8N_BASIC_AUTH_ACTIVE=false
 N8N_BASIC_AUTH_USER=admin
-N8N_BASIC_AUTH_PASSWORD=cambiar_esto
+N8N_BASIC_AUTH_PASSWORD=cambia_esto_ahora
 
-# Logs
+# Nivel de logs
 N8N_LOG_LEVEL=info
-N8N_LOG_LOCATION=/data/data/com.termux/files/home/.n8n/logs/
 ```
 
-Después de editar, reinicia n8n:
-
+Después de editar, reinicia:
 ```bash
 n8n-restart
 ```
 
 ---
 
-## 💾 Backups y Restauración
+## 💾 Backups
 
-### Crear backup
-
+**Crear backup manual:**
 ```bash
 n8n-backup
 ```
 
-O manualmente:
+Los backups se guardan en `~/backups/` con timestamp (ej: `n8n-backup-20240315-143022.tar.gz`).
 
+**Restaurar desde backup:**
 ```bash
-~/. n8n/backup.sh
+~/.n8n/restore.sh ~/backups/n8n-backup-FECHA.tar.gz
 ```
 
-Los backups se guardan en `~/backups/` con timestamp.
-
-### Restaurar desde backup
-
+**Backup automático diario (opcional):**
 ```bash
-~/.n8n/restore.sh ~/backups/n8n-backup-20231219-153045.tar.gz
+pkg install cronie termux-services
+sv-enable crond
+crontab -e
+# Agregar esta línea:
+0 3 * * * ~/.n8n/backup.sh
 ```
 
 ---
 
 ## 🔄 Actualización
 
-### Actualizar n8n a la última versión
-
 ```bash
 n8n-update
 ```
 
 O manualmente:
-
 ```bash
-npm install -g n8n@latest  # o pnpm install -g n8n@latest
-pm2 restart n8n
+# Con npm:
+npm install -g n8n@latest && pm2 restart n8n
+
+# Con pnpm:
+pnpm install -g n8n@latest && pm2 restart n8n
 ```
 
 ---
 
-## 🛡️ Seguridad Recomendada
+## 🛡️ Seguridad
 
-### 1. Activar autenticación básica
+**Activar autenticación** (muy recomendado si usas n8n en red local):
 
 Edita `~/.n8n/.env`:
-
 ```env
 N8N_BASIC_AUTH_ACTIVE=true
 N8N_BASIC_AUTH_USER=tu_usuario
-N8N_BASIC_AUTH_PASSWORD=tu_contraseña_segura
+N8N_BASIC_AUTH_PASSWORD=contraseña_segura
 ```
+Luego: `n8n-restart`
 
-### 2. No expongas el puerto 5678 a Internet
-
-- Usa n8n solo en red local
-- Si necesitas acceso externo, usa túneles seguros (ngrok, cloudflared)
-
-### 3. Backups regulares
-
-Configura un cron job (usando termux-services):
-
+**No expongas el puerto 5678 directamente a internet.** Si necesitas acceso externo, usa un túnel seguro:
 ```bash
-pkg install cronie termux-services
-sv-enable crond
+# Con cloudflared (recomendado):
+pkg install cloudflared
+cloudflared tunnel --url http://localhost:5678
 
-# Editar crontab
-crontab -e
-
-# Agregar backup diario a las 3 AM
-0 3 * * * ~/.n8n/backup.sh
+# Con ngrok:
+# Descarga desde ngrok.com/download → versión Linux ARM
 ```
 
 ---
@@ -260,129 +239,101 @@ crontab -e
 ## 🧯 Solución de Problemas
 
 ### n8n no inicia
-
 ```bash
-# Ver logs detallados
-n8n-logs
-
-# Verificar PM2
-pm2 list
-
-# Reiniciar PM2
-pm2 kill
-pm2 resurrect
+n8n-logs          # Ver qué error aparece
+pm2 list          # Ver estado de todos los procesos
+pm2 kill          # Matar PM2 completamente
+pm2 resurrect     # Restaurar procesos guardados
 ```
 
-### Error de compilación durante instalación
-
+### Error durante la instalación (falló compilación)
 ```bash
-pkg install -y ndk-sysroot clang make binutils
+pkg install -y ndk-sysroot clang make binutils pkg-config
+# Luego volver a ejecutar el instalador
 ```
 
 ### No puedo acceder desde otro dispositivo
-
-1. Verifica tu IP:
-   ```bash
-   ifconfig
-   ```
-
-2. Asegúrate que estés en la misma red WiFi
-
-3. Verifica el firewall de tu router
-
-4. Confirma que n8n está escuchando en 0.0.0.0:
-   ```bash
-   grep N8N_HOST ~/.n8n/.env
-   ```
-
-### PM2 no resucita procesos
-
 ```bash
-# Guardar estado actual
-pm2 save
+# 1. Verifica tu IP local
+ip route get 1.1.1.1
 
-# Configurar auto-inicio
-pm2 startup
+# 2. Verifica que n8n escucha en 0.0.0.0
+grep N8N_HOST ~/.n8n/.env
+# Debe mostrar: N8N_HOST=0.0.0.0
 
-# Verificar .bashrc
-grep "pm2 resurrect" ~/.bashrc
+# 3. Asegúrate de estar en la misma red WiFi que el otro dispositivo
+```
+
+### PM2 no recuerda los procesos al reiniciar Termux
+```bash
+pm2 save          # Guardar estado actual
+# El .bashrc ya incluye: pm2 resurrect (se ejecuta al abrir Termux)
+```
+
+### Alias no funcionan tras reinstalar
+```bash
+source ~/.bashrc
 ```
 
 ---
 
-## 🤖 Casos de Uso con IA
-
-- 📱 **Bots de Telegram/WhatsApp** con respuestas de IA
-- 📊 **Automatización de Google Sheets** con análisis inteligente
-- 🌐 **Integración con APIs de IA** (OpenAI, Claude, etc.)
-- 🔔 **Notificaciones inteligentes** con filtrado por IA
-- 📰 **Web scraping y resumen** automático con IA
-- 🎨 **Generación de imágenes** con Stable Diffusion/DALL-E
-- 💬 **Asistentes virtuales** personalizados
-- 📧 **Respuesta automática de emails** con contexto
-
-Todo esto **SIN PAGAR VPS**, directamente desde tu móvil.
-
----
-
-## 📁 Estructura de Archivos
+## 📁 Estructura de archivos
 
 ```
 ~/.n8n/
-├── .env                    # Configuración
-├── database.sqlite         # Base de datos
-├── logs/                   # Logs de n8n
-├── start-n8n.sh           # Script de inicio
-├── backup.sh              # Script de backup
-├── restore.sh             # Script de restauración
-└── update.sh              # Script de actualización
+├── .env                 # Configuración principal
+├── database.sqlite      # Base de datos
+├── logs/                # Logs de n8n
+├── start-n8n.sh         # Script de inicio (usado por el alias n8n)
+├── backup.sh            # Script de backup
+├── restore.sh           # Script de restauración
+├── update.sh            # Script de actualización
+└── n8n-manager.sh       # Gestor visual interactivo
 
-~/backups/                  # Backups con timestamp
-└── n8n-backup-*.tar.gz
+~/backups/
+└── n8n-backup-*.tar.gz  # Backups con timestamp
 ```
 
 ---
 
-## 🔧 Comandos PM2 Útiles
+## 🔧 Comandos PM2 de referencia
 
 ```bash
-pm2 list                    # Listar procesos
-pm2 show n8n               # Detalles de n8n
-pm2 logs n8n               # Ver logs
-pm2 logs n8n --lines 100   # Ver últimas 100 líneas
-pm2 restart n8n            # Reiniciar
-pm2 stop n8n               # Detener
-pm2 start n8n              # Iniciar
-pm2 delete n8n             # Eliminar del PM2
-pm2 save                   # Guardar estado actual
-pm2 resurrect              # Restaurar procesos guardados
-pm2 monit                  # Monitor en tiempo real
+pm2 list                  # Ver todos los procesos
+pm2 show n8n              # Detalles de n8n
+pm2 logs n8n              # Ver logs
+pm2 logs n8n --lines 100  # Ver últimas 100 líneas
+pm2 restart n8n           # Reiniciar
+pm2 stop n8n              # Detener
+pm2 delete n8n            # Eliminar de PM2
+pm2 save                  # Guardar estado
+pm2 resurrect             # Restaurar procesos guardados
+pm2 monit                 # Monitor en tiempo real
+pm2 flush                 # Limpiar logs de PM2
 ```
 
 ---
 
-## 🎨 Características del Instalador v2.0
+## 🤖 Casos de uso con IA
 
-- ✅ **Detección automática** de npm/pnpm
-- ✅ **Instalación inteligente** de dependencias
-- ✅ **Spinner animado** durante instalación
-- ✅ **Logs centralizados** en `~/n8n-install.log`
-- ✅ **Verificación de entorno** Termux
-- ✅ **Configuración automática** de SQLite
-- ✅ **Alias permanentes** en `.bashrc`
-- ✅ **Auto-inicio** con PM2
-- ✅ **Scripts de utilidad** incluidos
-- ✅ **Información de acceso** al finalizar
+- Bots de Telegram/WhatsApp con respuestas de IA (OpenAI, Claude, Gemini)
+- Automatización de Google Sheets con análisis inteligente
+- Web scraping y resumen automático con IA
+- Notificaciones inteligentes con filtrado por IA
+- Generación de imágenes con DALL-E / Stable Diffusion
+- Asistentes virtuales personalizados
+- Respuesta automática de emails con contexto
+- Pipelines de procesamiento de documentos
+
+Todo esto **sin pagar VPS**, directamente desde tu Android.
 
 ---
 
 ## 🤝 Contribuir
 
-¿Quieres mejorar el proyecto? ¡Contribuciones bienvenidas!
-
 1. Fork el repositorio
 2. Crea una rama: `git checkout -b feature/mejora`
-3. Commit: `git commit -am 'Agregar mejora'`
+3. Commit: `git commit -am 'Descripción del cambio'`
 4. Push: `git push origin feature/mejora`
 5. Abre un Pull Request
 
@@ -390,7 +341,7 @@ pm2 monit                  # Monitor en tiempo real
 
 ## 📄 Licencia
 
-[MIT](LICENSE) - Usa, modifica y distribuye libremente.
+[MIT](LICENSE) — Usa, modifica y distribuye libremente.
 
 ---
 
@@ -398,47 +349,23 @@ pm2 monit                  # Monitor en tiempo real
 
 - **Autor**: [@tiendastelegram](https://t.me/tiendastelegram)
 - **Inspirado por**: Comunidad n8n, Termux e IvanByCinderella
-- **Telegram**: https://t.me/tiendastelegram
 - **Repo**: https://github.com/kuromi04/n8n-termux-android-ia
 
 ---
 
 ## 📞 Soporte
 
-¿Problemas? ¿Preguntas?
-
 - 🐛 [Abrir Issue](https://github.com/kuromi04/n8n-termux-android-ia/issues)
 - 💬 [Telegram](https://t.me/tiendastelegram)
-- 📧 Contacto en el perfil de GitHub
 
 ---
 
-## ⭐ ¿Te gustó?
+## ⭐ ¿Te fue útil?
 
-Si este proyecto te fue útil:
-- ⭐ Dale una estrella en GitHub
-- 🔄 Compártelo con otros
-- 💬 Únete al canal de Telegram
-
----
-
-## 📊 Estadísticas
+Dale una estrella en GitHub y compártelo con otros. 🙌
 
 ![GitHub stars](https://img.shields.io/github/stars/kuromi04/n8n-termux-android-ia?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/kuromi04/n8n-termux-android-ia?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/kuromi04/n8n-termux-android-ia?style=social)
-
----
-
-## 🎯 Próximas Mejoras
-
-- [ ] Soporte para múltiples instancias de n8n
-- [ ] Integración con Docker (si es posible en Termux)
-- [ ] Panel de control web para gestión
-- [ ] Monitoreo de recursos (CPU, RAM)
-- [ ] Notificaciones push cuando n8n se caiga
-- [ ] Auto-actualización programada
-- [ ] Integración con servicios de túnel (ngrok, cloudflared)
 
 ---
 

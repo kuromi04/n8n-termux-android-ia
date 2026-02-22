@@ -75,8 +75,8 @@ pkg update -y && pkg upgrade -y
 pkg install -y git
 git clone https://github.com/kuromi04/n8n-termux-android-ia.git
 cd n8n-termux-android-ia
-chmod +x scripts/install.sh
-./scripts/install.sh
+chmod +x install.sh
+./install.sh
 ```
 
 El instalador hace todo automáticamente:

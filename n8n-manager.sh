@@ -3,7 +3,7 @@
 #========================================
 # n8n Manager - Script de Gestión v2.1
 # Corregido para funcionar en Termux
-# Autor: @tiendastelegram
+# Autor: @maka0024
 #========================================
 
 # Sin set -e — manejamos errores manualmente

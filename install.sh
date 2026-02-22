@@ -3,7 +3,7 @@
 #========================================
 # n8n Termux Installer - Versión 2.1
 # Instalador corregido y funcional
-# Autor: @tiendastelegram
+# Autor: @maka0024
 # Repo: github.com/kuromi04/n8n-termux-android-ia
 #========================================
 

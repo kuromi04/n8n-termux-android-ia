@@ -300,14 +300,22 @@ create_start_script() {
 
 N8N_DIR="$HOME/.n8n"
 
+# Optimizaciones de memoria para n8n en Android (RAM limitada)
+# --max-old-space-size evita que Node.js consuma demasiada RAM y sea matado por Android
+export NODE_OPTIONS="--max-old-space-size=512"
+
 # Cargar variables de entorno
 if [ -f "$N8N_DIR/.env" ]; then
     while IFS='=' read -r key value; do
-        # Ignorar comentarios y líneas vacías
         [[ "$key" =~ ^#.*$ ]] && continue
         [[ -z "$key" ]] && continue
         export "$key"="$value"
     done < "$N8N_DIR/.env"
+fi
+
+# Optimizar SQLite para rendimiento (WAL Mode)
+if [ -f "$N8N_DIR/database.sqlite" ]; then
+    sqlite3 "$N8N_DIR/database.sqlite" "PRAGMA journal_mode=WAL;" > /dev/null 2>&1
 fi
 
 # Verificar si ya está corriendo
@@ -317,9 +325,10 @@ if pm2 list 2>/dev/null | grep -q "n8n.*online"; then
     exit 0
 fi
 
-# Iniciar n8n
-echo "Iniciando n8n..."
-pm2 start n8n --name n8n -- start 2>/dev/null || pm2 start "$(command -v n8n)" --name n8n -- start
+# Iniciar n8n con PM2 y límites de memoria
+echo "Iniciando n8n con optimizaciones de memoria..."
+pm2 start n8n --name n8n --node-args="--max-old-space-size=512" -- start 2>/dev/null \
+|| pm2 start "$(command -v n8n)" --name n8n --node-args="--max-old-space-size=512" -- start
 pm2 save --force
 
 # Obtener IP
@@ -342,7 +351,7 @@ echo "  n8n-manager  → Gestor visual"
 STARTSCRIPT
 
     chmod +x "$N8N_DIR/start-n8n.sh"
-    log "✓ Script de inicio creado"
+    log "✓ Script de inicio optimizado creado"
 }
 
 #========================================

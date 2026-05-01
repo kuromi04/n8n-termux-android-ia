@@ -69,18 +69,19 @@ print_menu() {
     echo -e "${CYAN}│${NC}  7) 💾 Crear backup                        ${CYAN}│${NC}"
     echo -e "${CYAN}│${NC}  8) 📂 Restaurar desde backup              ${CYAN}│${NC}"
     echo -e "${CYAN}│${NC}  9) 🗑️  Limpiar logs antiguos              ${CYAN}│${NC}"
+    echo -e "${CYAN}│${NC} 10) ⚡ Optimizar SQLite (WAL Mode)        ${CYAN}│${NC}"
     echo -e "${CYAN}├─────────────────────────────────────────────┤${NC}"
     echo -e "${CYAN}│${NC}  ${YELLOW}Configuración${NC}                           ${CYAN}│${NC}"
     echo -e "${CYAN}├─────────────────────────────────────────────┤${NC}"
-    echo -e "${CYAN}│${NC} 10) ⚙️  Editar configuración               ${CYAN}│${NC}"
-    echo -e "${CYAN}│${NC} 11) 🔐 Configurar autenticación            ${CYAN}│${NC}"
-    echo -e "${CYAN}│${NC} 12) 🌐 Ver URLs de acceso                  ${CYAN}│${NC}"
+    echo -e "${CYAN}│${NC} 11) ⚙️  Editar configuración               ${CYAN}│${NC}"
+    echo -e "${CYAN}│${NC} 12) 🔐 Configurar autenticación            ${CYAN}│${NC}"
+    echo -e "${CYAN}│${NC} 13) 🌐 Ver URLs de acceso                  ${CYAN}│${NC}"
     echo -e "${CYAN}├─────────────────────────────────────────────┤${NC}"
     echo -e "${CYAN}│${NC}  ${YELLOW}Sistema${NC}                                 ${CYAN}│${NC}"
     echo -e "${CYAN}├─────────────────────────────────────────────┤${NC}"
-    echo -e "${CYAN}│${NC} 13) 🔍 Diagnóstico del sistema             ${CYAN}│${NC}"
-    echo -e "${CYAN}│${NC} 14) 📚 Ver comandos disponibles            ${CYAN}│${NC}"
-    echo -e "${CYAN}│${NC} 15) ℹ️  Información del sistema            ${CYAN}│${NC}"
+    echo -e "${CYAN}│${NC} 14) 🔍 Diagnóstico del sistema             ${CYAN}│${NC}"
+    echo -e "${CYAN}│${NC} 15) 📚 Ver comandos disponibles            ${CYAN}│${NC}"
+    echo -e "${CYAN}│${NC} 16) ℹ️  Información del sistema            ${CYAN}│${NC}"
     echo -e "${CYAN}├─────────────────────────────────────────────┤${NC}"
     echo -e "${CYAN}│${NC}  0) 👋 Salir                               ${CYAN}│${NC}"
     echo -e "${CYAN}└─────────────────────────────────────────────┘${NC}"
@@ -92,7 +93,7 @@ print_menu() {
 #========================================
 
 start_n8n() {
-    echo -e "${YELLOW}Iniciando n8n...${NC}"
+    echo -e "${YELLOW}Iniciando n8n con optimización de memoria...${NC}"
 
     # Cargar variables de entorno
     if [ -f "$N8N_DIR/.env" ]; then
@@ -103,19 +104,42 @@ start_n8n() {
         done < "$N8N_DIR/.env"
     fi
 
+    # Verificar si el puerto 5678 está ocupado
+    local PORT=$(grep '^N8N_PORT=' "$N8N_DIR/.env" 2>/dev/null | cut -d'=' -f2)
+    PORT=${PORT:-5678}
+    if lsof -Pi :$PORT -sTCP:LISTEN -t >/dev/null ; then
+        echo -e "${RED}⚠ El puerto $PORT ya está en uso por otro proceso.${NC}"
+        read -p "¿Deseas intentar matar el proceso que ocupa el puerto? (s/n): " kill_port
+        if [[ $kill_port == [sS] ]]; then
+            fuser -k $PORT/tcp 2>/dev/null || true
+            sleep 1
+        fi
+    fi
+
     if pm2 list 2>/dev/null | grep -q "n8n.*online"; then
         echo -e "${GREEN}✓ n8n ya está corriendo${NC}"
     else
-        # Intentar iniciar n8n — primero con comando simple, luego con ruta completa
-        pm2 start n8n --name n8n -- start 2>/dev/null \
-        || pm2 start "$(command -v n8n)" --name n8n -- start 2>/dev/null \
+        # Iniciar con límite de memoria (RAM fija en Android)
+        pm2 start n8n --name n8n --node-args="--max-old-space-size=512" -- start 2>/dev/null \
+        || pm2 start "$(command -v n8n)" --name n8n --node-args="--max-old-space-size=512" -- start 2>/dev/null \
         || { echo -e "${RED}Error al iniciar n8n. Revisa los logs con: pm2 logs${NC}"; read -p "Enter..."; return; }
 
         pm2 save --force 2>/dev/null
-        echo -e "${GREEN}✓ n8n iniciado${NC}"
+        echo -e "${GREEN}✓ n8n iniciado con 512MB RAM de límite${NC}"
     fi
 
     show_access_info
+    read -p "Presiona Enter para continuar..."
+}
+
+optimize_sqlite() {
+    echo -e "${YELLOW}Optimizando base de datos SQLite...${NC}"
+    if [ -f "$N8N_DIR/database.sqlite" ]; then
+        sqlite3 "$N8N_DIR/database.sqlite" "PRAGMA journal_mode=WAL; PRAGMA synchronous=NORMAL; VACUUM;"
+        echo -e "${GREEN}✓ Modo WAL activado y base de datos compactada.${NC}"
+    else
+        echo -e "${RED}✗ No se encontró la base de datos.${NC}"
+    fi
     read -p "Presiona Enter para continuar..."
 }
 
@@ -494,7 +518,7 @@ main_menu() {
         print_header
         print_menu
 
-        read -p "Selecciona una opción [0-15]: " option
+        read -p "Selecciona una opción [0-16]: " option
 
         case $option in
             1)  start_n8n ;;
@@ -506,12 +530,13 @@ main_menu() {
             7)  create_backup ;;
             8)  restore_backup ;;
             9)  clean_logs ;;
-            10) edit_config ;;
-            11) configure_auth ;;
-            12) show_access_info_menu ;;
-            13) show_diagnostics ;;
-            14) show_commands ;;
-            15) show_system_info ;;
+            10) optimize_sqlite ;;
+            11) edit_config ;;
+            12) configure_auth ;;
+            13) show_access_info_menu ;;
+            14) show_diagnostics ;;
+            15) show_commands ;;
+            16) show_system_info ;;
             0)
                 echo -e "\n${GREEN}¡Hasta luego! 👋${NC}\n"
                 exit 0
